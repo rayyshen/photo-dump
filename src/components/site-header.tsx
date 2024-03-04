@@ -53,7 +53,7 @@ export default function SiteHeader({ children }: PropsWithChildren) {
 
                             </div>
                         </Link>
-                        <Link href="/about" target="_blank" rel="noreferrer">
+                        <Link href="/about" rel="noreferrer">
                             <div
                                 className={buttonVariants({
                                     size: "icon",

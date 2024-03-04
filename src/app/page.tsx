@@ -29,8 +29,18 @@ const GalleryPage = async () => {
   );
 };
 
+const GalleryPage2 = async () => {
+  const imageDirectory = path.join(process.cwd(), '/public/images2');
+  const imageFilenames = await fs.readdir(imageDirectory)
+  // console.log(imageFilenames)
+
+  return (
+    <Gallery2 images={imageFilenames} />
+  );
+};
+
 const Gallery = ({ images }: { images: Array<string>; }) => { 
-  return <div className="grid grid-cols-2 grid-flow-row gap-5 md:gap-10 max-w-3xl auto-rows-max">
+  return <div className="grid grid-cols-1 grid-flow-row gap-3 md:gap-10 max-w-3xl auto-rows-max mr-3 md:mr-10">
     {images.map((el: string) =>
       <Credenza>
         <CredenzaTrigger>
@@ -39,7 +49,8 @@ const Gallery = ({ images }: { images: Array<string>; }) => {
             height={500}
             alt={'alt'}
             src={`/images/${el}`}
-            key={el} />
+            key={el}
+            loading={'eager'}/>
         </CredenzaTrigger>
         <CredenzaContent>
           <CredenzaBody className="flex flex-row justify-center max-h-screen md:max-h-fit md:max-w-fit">
@@ -54,7 +65,43 @@ const Gallery = ({ images }: { images: Array<string>; }) => {
               // objectFit={'contain'}
               alt={'alt'}
               src={`/images/${el}`}
-              key={el} />
+              key={el}
+              loading={'eager'} />
+          </CredenzaBody>
+        </CredenzaContent>
+      </Credenza>
+    )}
+  </div>
+}
+
+const Gallery2 = ({ images }: { images: Array<string>; }) => { 
+  return <div className="grid grid-cols-1 grid-flow-row gap-3 md:gap-10 max-w-3xl auto-rows-max">
+    {images.map((el: string) =>
+      <Credenza>
+        <CredenzaTrigger>
+          <Image className="rounded-sm hover:rounded-lg ease-in-out duration-200"
+            width={500}
+            height={500}
+            alt={'alt'}
+            src={`/images/${el}`}
+            key={el} 
+            loading={'eager'}/>
+        </CredenzaTrigger>
+        <CredenzaContent>
+          <CredenzaBody className="flex flex-row justify-center max-h-screen md:max-h-fit md:max-w-fit">
+            <Image className="my-10"
+              height={300}
+              width={500}
+              // style={{
+              //   width: '100%',
+              //   height: 'auto',
+              // }}
+              // layout={'responsive'} 
+              // objectFit={'contain'}
+              alt={'alt'}
+              src={`/images2/${el}`}
+              key={el}
+              loading={'eager'} />
           </CredenzaBody>
         </CredenzaContent>
       </Credenza>
@@ -63,13 +110,13 @@ const Gallery = ({ images }: { images: Array<string>; }) => {
 }
 
 
-
 export default function Home() {
   return (
     <main>
       <SiteHeader />
-      <div className="flex flex-row min-h-screen justify-center mx-5 my-5">
+      <div className="flex flex-row min-h-screen justify-center mx-5 mt-5 mb-10 md:mb-20">
         <GalleryPage />
+        <GalleryPage2 />
       </div>
     </main>
   );

@@ -42,7 +42,7 @@ const GalleryPage2 = async () => {
 const Gallery = ({ images }: { images: Array<string>; }) => { 
   return <div className="grid grid-cols-1 grid-flow-row gap-3 md:gap-10 max-w-3xl auto-rows-max mr-3 md:mr-10">
     {images.map((el: string) =>
-      <Credenza>
+      <Credenza key={el}>
         <CredenzaTrigger>
           <Image className="rounded-sm hover:rounded-lg ease-in-out duration-200"
             width={500}
@@ -77,13 +77,13 @@ const Gallery = ({ images }: { images: Array<string>; }) => {
 const Gallery2 = ({ images }: { images: Array<string>; }) => { 
   return <div className="grid grid-cols-1 grid-flow-row gap-3 md:gap-10 max-w-3xl auto-rows-max">
     {images.map((el: string) =>
-      <Credenza>
+      <Credenza key={el}>
         <CredenzaTrigger>
           <Image className="rounded-sm hover:rounded-lg ease-in-out duration-200"
             width={500}
             height={500}
             alt={'alt'}
-            src={`/images/${el}`}
+            src={`/images2/${el}`}
             key={el} 
             loading={'eager'}/>
         </CredenzaTrigger>
